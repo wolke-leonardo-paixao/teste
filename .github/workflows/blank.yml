@@ -29,7 +29,7 @@ jobs:
             export VIEW_NAME=default-view-name
           fi
 
-      - name: Check VIEW_NAME variable
+      - name: Debug VIEW_NAME
         run: echo "VIEW_NAME is $VIEW_NAME"
 
       - name: Run Python script
