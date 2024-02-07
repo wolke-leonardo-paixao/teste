@@ -7,4 +7,4 @@ current_branch=$(git rev-parse --abbrev-ref HEAD)
 export BRANCH_NAME="$current_branch"
 
 # Executar o segundo script
-../script.py
+script.py
