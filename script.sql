@@ -1,5 +1,3 @@
-#!/bin/sql
-
 DECLARE branch_name STRING;
 SET branch_name = GET_ENV("BRANCH_NAME");
 
