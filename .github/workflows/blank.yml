@@ -3,7 +3,8 @@ name: Print variable from SQL script
 on:
   push:
     branches:
-      - '*'
+      - 'prod'
+      - 'dev'
 
 jobs:
   print-variable:
