@@ -1,5 +1,5 @@
 DECLARE branch_name STRING;
-SET branch_name = ARGUMENTS[OFFSET(0)];
+SET branch_name = GET_ENV("BRANCH_NAME");
 
 SET branch_name = REGEXP_REPLACE(branch_name, r'^feature/', '');
 
@@ -28,4 +28,3 @@ PRINT 'O nome da view é: ' || view_name;
 --PREPARE stmt FROM @sql_query;
 --EXECUTE stmt;
 --DEALLOCATE PREPARE stmt;
-

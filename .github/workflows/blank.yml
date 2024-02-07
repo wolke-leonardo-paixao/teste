@@ -9,15 +9,29 @@ on:
 jobs:
   print-variable:
     runs-on: ubuntu-latest
+    env:
+      BRANCH_NAME: ${{ github.event.ref }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Run SQL script to print variable
+      - name: Set environment variables based on branch
         run: |
-         if [ ${{ github.ref }} == 'refs/heads/prod' ] || [ ${{ github.ref }} == 'refs/heads/dev' ]; then
-            cat script.sql
+          if [ "$BRANCH_NAME" = "refs/heads/dev" ]; then
+            echo "Setting environment variables for dev branch"
+            export VIEW_NAME=dlh-dev-brlm-qr8
+          elif [ "$BRANCH_NAME" = "refs/heads/prod" ]; then
+            echo "Setting environment variables for prod branch"
+            export VIEW_NAME=dlh-prd-brlm-zcb
           else
-            echo "Ignoring branch: ${{ github.ref }}"
+            echo "Branch not recognized, setting default variables"
+            export VIEW_NAME=default-view-name
           fi
+
+      - name: Debug VIEW_NAME
+        run: echo "VIEW_NAME is $VIEW_NAME"
+
+      - name: Run Python script
+        run: python script.py
+
