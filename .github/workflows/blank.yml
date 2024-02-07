@@ -29,8 +29,9 @@ jobs:
             export VIEW_NAME=default-view-name
           fi
 
-      - name: Check VIEW_NAME variable
-        run: echo "VIEW_NAME is $VIEW_NAME"
+      - name: Debug BRANCH_NAME
+        run: echo "BRANCH_NAME is $BRANCH_NAME"
+
 
       - name: Run Python script
         run: python script.py
