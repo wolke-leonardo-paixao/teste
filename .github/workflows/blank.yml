@@ -1,0 +1,19 @@
+name: Pre-push
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  pre-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run pre-push script
+        run: |
+          chmod +x ./.git/hooks/pre-push
+          ./.git/hooks/pre-push
