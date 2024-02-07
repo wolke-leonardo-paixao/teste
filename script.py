@@ -14,9 +14,9 @@ if branch_name is not None:
     branch_name = re.sub(r'^feature/', '', branch_name)
     # Define o nome da view com base no nome da branch
     view_name = ''
-    if branch_name == 'dev':
+    if branch_name == 'refs/heads/dev':
         view_name = 'dlh-dev-brlm-qr8'
-    elif branch_name == 'prod':
+    elif branch_name == 'refs/heads/prod':
         view_name = 'dlh-prd-brlm-zcb'
     else:
         view_name = 'Branch desconhecida.'
