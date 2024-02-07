@@ -27,7 +27,7 @@ jobs:
           fi
 
       - name: Check VIEW_NAME variable
-        run: echo "VIEW_NAME is $VIEW_NAME"
+        run: echo "VIEW_NAME is ${BRANCH_NAME}"
 
       - name: Run Python script
         run: python script.py
