@@ -26,5 +26,9 @@ jobs:
             export VIEW_NAME=dlh-prd-brlm-zcb
           fi
 
+      - name: Check VIEW_NAME variable
+        run: echo "VIEW_NAME is $VIEW_NAME"
+
       - name: Run Python script
         run: python script.py
+
