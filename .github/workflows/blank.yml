@@ -1,0 +1,23 @@
+name: Print variable from SQL script
+
+on:
+  push:
+    branches:
+      - 'prod'
+      - 'dev'
+
+jobs:
+  print-variable:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run SQL script to print variable
+        run: |
+         if [ ${{ github.ref }} == 'refs/heads/prod' ] || [ ${{ github.ref }} == 'refs/heads/dev' ]; then
+            cat script.sql
+          else
+            echo "Ignoring branch: ${{ github.ref }}"
+          fi
