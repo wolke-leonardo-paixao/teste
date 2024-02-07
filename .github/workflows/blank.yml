@@ -9,11 +9,21 @@ on:
 jobs:
   print-variable:
     runs-on: ubuntu-latest
+    env:
+      BRANCH_NAME: ${{ github.event.ref }}
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Run SQL script to print variable
-        run: |
-         python script.py
+      run: |
+          if [ "${BRANCH_NAME##*/}" = "dev" ]; then
+            echo "Setting environment variables for dev branch"
+            export VIEW_NAME=dlh-dev-brlm-qr8
+          elif [ "${BRANCH_NAME##*/}" = "prod" ]; then
+            echo "Setting environment variables for prod branch"
+            export VIEW_NAME=dlh-prd-brlm-zcb
+          fi
+
+      run: |
+          python script.py
