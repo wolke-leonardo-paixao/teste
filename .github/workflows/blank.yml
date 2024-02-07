@@ -16,7 +16,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      run: |
+      - name: Set environment variables based on branch
+        run: |
           if [ "${BRANCH_NAME##*/}" = "dev" ]; then
             echo "Setting environment variables for dev branch"
             export VIEW_NAME=dlh-dev-brlm-qr8
@@ -25,5 +26,5 @@ jobs:
             export VIEW_NAME=dlh-prd-brlm-zcb
           fi
 
-      run: |
-          python script.py
+      - name: Run Python script
+        run: python script.py
