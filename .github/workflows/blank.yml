@@ -18,10 +18,10 @@ jobs:
 
       - name: Set environment variables based on branch
         run: |
-          if [ "${BRANCH_NAME##*/}" = "dev" ]; then
+          if [ "$BRANCH_NAME" = "refs/heads/dev" ]; then
             echo "Setting environment variables for dev branch"
             export VIEW_NAME=dlh-dev-brlm-qr8
-          elif [ "${BRANCH_NAME##*/}" = "prod" ]; then
+          elif [ "$BRANCH_NAME" = "refs/heads/prod" ]; then
             echo "Setting environment variables for prod branch"
             export VIEW_NAME=dlh-prd-brlm-zcb
           else
@@ -29,9 +29,8 @@ jobs:
             export VIEW_NAME=default-view-name
           fi
 
-      - name: Debug BRANCH_NAME
-        run: echo "BRANCH_NAME is $BRANCH_NAME"
-
+      - name: Check VIEW_NAME variable
+        run: echo "VIEW_NAME is $VIEW_NAME"
 
       - name: Run Python script
         run: python script.py
