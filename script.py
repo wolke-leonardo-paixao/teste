@@ -20,3 +20,4 @@ if branch_name is not None:
     print('O nome da view é:', view_name)
 else:
     print('A variável de ambiente BRANCH_NAME não está definida.')
+    
