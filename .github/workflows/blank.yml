@@ -1,4 +1,4 @@
-name: Pre-push
+name: Print variable from SQL script
 
 on:
   push:
@@ -6,14 +6,13 @@ on:
       - '*'
 
 jobs:
-  pre-push:
+  print-variable:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Run pre-push script
+      - name: Run SQL script to print variable
         run: |
-          chmod +x ./.git/hooks/pre-push
-          ./.git/hooks/pre-push
+          echo "DECLARE variable STRING; SET variable = 'Hello, world!'; PRINT variable;"
