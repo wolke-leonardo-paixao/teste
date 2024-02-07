@@ -6,6 +6,8 @@ import re
 # Obtém o nome da branch a partir da variável de ambiente
 branch_name = os.getenv("BRANCH_NAME")
 
+print(branch_name)
+
 # Remove o prefixo 'feature/' do nome da branch
 if branch_name is not None:
     # Remove o prefixo 'feature/' do nome da branch, se presente
