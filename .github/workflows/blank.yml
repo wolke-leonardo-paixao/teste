@@ -18,10 +18,10 @@ jobs:
 
       - name: Set environment variables based on branch
         run: |
-          if [ "${BRANCH_NAME##*/}" = "refs/heads/dev" ]; then
+          if [ "${BRANCH_NAME##*/}" = "dev" ]; then
             echo "Setting environment variables for dev branch"
             export VIEW_NAME=dlh-dev-brlm-qr8
-          elif [ "${BRANCH_NAME##*/}" = "refs/heads/prod" ]; then
+          elif [ "${BRANCH_NAME##*/}" = "prod" ]; then
             echo "Setting environment variables for prod branch"
             export VIEW_NAME=dlh-prd-brlm-zcb
           else
