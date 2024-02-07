@@ -13,16 +13,19 @@ SET view_name = (
     END
 );
 
--- query
-DECLARE sql_query STRING;
-SET sql_query = CONCAT('
-    CREATE OR REPLACE VIEW `', view_name, '.publishedClientRelationship.dimDistrict`
-    OPTIONS(
-      description="Bairro é uma subdivisão da localidade. Para saber mais, acesse: https://leroypedia.leroymerlin.com.br/wiki/Bairro"
-    )
-    AS SELECT * FROM ', view_name, '.semantic.dimDistrict;'
-);
+PRINT 'O nome da view é: ' || view_name;
 
-PREPARE stmt FROM @sql_query;
-EXECUTE stmt;
-DEALLOCATE PREPARE stmt;
+-- query
+--DECLARE sql_query STRING;
+--SET sql_query = CONCAT('
+--    CREATE OR REPLACE VIEW `', view_name, '.publishedClientRelationship.dimDistrict`
+--    OPTIONS(
+--      description="Bairro é uma subdivisão da localidade. Para saber mais, acesse: https://leroypedia.leroymerlin.com.br/wiki/Bairro"
+--    )
+--    AS SELECT * FROM ', view_name, '.semantic.dimDistrict;'
+--);
+
+--PREPARE stmt FROM @sql_query;
+--EXECUTE stmt;
+--DEALLOCATE PREPARE stmt;
+
