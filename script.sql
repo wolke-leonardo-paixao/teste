@@ -28,4 +28,4 @@ PRINT 'O nome da view é: ' || view_name;
 --PREPARE stmt FROM @sql_query;
 --EXECUTE stmt;
 --DEALLOCATE PREPARE stmt;
-
+--teste
