@@ -16,8 +16,4 @@ jobs:
 
       - name: Run SQL script to print variable
         run: |
-         if [ ${{ github.ref }} == 'refs/heads/prod' ] || [ ${{ github.ref }} == 'refs/heads/dev' ]; then
-            cat script.sql
-          else
-            echo "Ignoring branch: ${{ github.ref }}"
-          fi
+         python script.py
