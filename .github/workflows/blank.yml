@@ -28,9 +28,7 @@ jobs:
     
         - name: Esperar pelo MySQL estar pronto
           run: |
-            docker logs --tail 100 nome_do_contêiner_mysql
-
-        
+            docker ps -a
     
         - name: Executar testes SQL
           run: mysql -h localhost -P 3306 -u ${{ secrets.DB_USER }} -p"${{ secrets.DB_PASSWORD }}" < script.sql
