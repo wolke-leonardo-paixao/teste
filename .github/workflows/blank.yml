@@ -10,35 +10,14 @@ jobs:
   print-variable:
     runs-on: ubuntu-latest
 
-    services:
-      mysql:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: ${{ secrets.DB_ROOT_PASSWORD }}
-          MYSQL_DATABASE: ${{ secrets.DB_NAME }}
-          MYSQL_USER: ${{ secrets.DB_USER }}
-          MYSQL_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
-
     steps:
-      - name: Escrever variáveis de ambiente em um arquivo
-        run: echo "MYSQL_CONTAINER_IP=172.17.0.2" >> env_file.env
 
       - name: Carregar arquivo de ambiente
         uses: actions/checkout@v2
         with:
           path: env_file.env
 
-      - name: Iniciar contêiner MySQL
-        run: docker run --name mysql_container -e MYSQL_ROOT_PASSWORD=senha -d mysql:8.0
+      - name: Obter nome da branch
+        run: echo "O nome da branch é ${GITHUB_REF#refs/heads/}"
 
-      - name: Obter endereço IP do contêiner MySQL
-        run: |
-          CONTAINER_IP=$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mysql_container)
-          echo "Endereço IP do contêiner MySQL: $CONTAINER_IP"
-
-      - name: Usar endereço IP do contêiner MySQL
-        run: |
-          mysql -h ${{ env.MYSQL_CONTAINER_IP }} -P 3306 -u ${{ secrets.DB_USER }} -p"${{ secrets.DB_PASSWORD }}" < src/script.sql
+      

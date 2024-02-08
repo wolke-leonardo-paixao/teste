@@ -1,6 +1,10 @@
-SET @branch_name = (SELECT TRIM(TRAILING '\n' FROM LOAD_FILE('src/branch_name.txt')));
+import os
+from dotenv import load_dotenv
+import psycopg2
 
-SELECT CONCAT('O nome da view é: ', @branch_name);
+load_dotenv()
+
+branch_name = os.getenv('BRANCH_NAME')
 
 SET @view_name = CASE 
     WHEN @branch_name = 'dev' THEN 'dlh-dev-brlm-qr8'
