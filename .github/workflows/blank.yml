@@ -27,11 +27,11 @@ jobs:
         - name: Escrever variáveis de ambiente em um arquivo
           run: echo "MYSQL_CONTAINER_IP=172.17.0.2" >> env_file.env
 
-        - name: Checkout do código
+        - name: Carregar arquivo de ambiente
           uses: actions/checkout@v2
           with:
-            path: .env
-    
+            path: env_file.env
+        
         - name: Iniciar contêiner MySQL
           run: |
             docker run --name mysql_container -e MYSQL_ROOT_PASSWORD=senha -d mysql:8.0
