@@ -18,8 +18,6 @@ SET @sql = CONCAT('
     AS SELECT * FROM ', @view_name, '.semantic.dimDistrict;'
 );
 
-PRINT (view_name);
-
 PREPARE stmt FROM @sql_query;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
