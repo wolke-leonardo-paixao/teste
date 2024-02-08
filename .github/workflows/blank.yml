@@ -30,7 +30,7 @@ jobs:
           run: |
             until mysqladmin ping -h localhost -P 3306 --silent; do
               echo 'Aguardando o MySQL estar pronto...'
-              sleep 5
+              sleep 120
             done
         
     
