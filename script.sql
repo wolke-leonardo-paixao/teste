@@ -7,13 +7,13 @@ SET branch_name = REGEXP_REPLACE(branch_name, r'^feature/', '');
 DECLARE view_name STRING;
 SET view_name = (
     CASE 
-        WHEN branch_name = 'dev' THEN 'dlh-dev-brlm-qr8'
-        WHEN branch_name = 'prod' THEN 'dlh-prd-brlm-zcb'
+        WHEN branch_name = 'refs/heads/dev' THEN 'dlh-dev-brlm-qr8'
+        WHEN branch_name = 'refs/heads/prod' THEN 'dlh-prd-brlm-zcb'
         ELSE 'Branch desconhecida.'
     END
 );
 
-PRINT 'O nome da view é: ' || view_name;
+PRINT ('O nome da view é: ' + view_name)
 
 -- query
 --DECLARE sql_query STRING;
