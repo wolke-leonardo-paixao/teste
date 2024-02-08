@@ -1,6 +1,6 @@
 SET @branch_name = (SELECT TRIM(TRAILING '\n' FROM LOAD_FILE('branch_name.txt')));
 
-SET @branch_name = REGEXP_REPLACE(@branch_name, '^refs/heads/', '');
+SELECT CONCAT('O nome da view é: ', @branch_name);
 
 SET @view_name = CASE 
     WHEN @branch_name = 'dev' THEN 'dlh-dev-brlm-qr8'
