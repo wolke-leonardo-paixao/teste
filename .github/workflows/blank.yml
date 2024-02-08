@@ -28,7 +28,7 @@ jobs:
     
         - name: Esperar pelo MySQL estar pronto
           run: |
-            docker ps -a
+            docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' de6f1e116190
     
         - name: Executar testes SQL
           run: mysql -h 88bbf6ff5f2142aa8f23f31dd55f002d_mysql80_bef837 -P 3306 -u ${{ secrets.DB_USER }} -p"${{ secrets.DB_ROOT_PASSWORD }}" < script.sql
