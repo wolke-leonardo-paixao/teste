@@ -31,5 +31,5 @@ jobs:
             docker ps -a
     
         - name: Executar testes SQL
-          run: mysql -h localhost -P 3306 -u ${{ secrets.DB_USER }} -p"${{ secrets.DB_PASSWORD }}" < script.sql
+          run: mysql -h 88bbf6ff5f2142aa8f23f31dd55f002d_mysql80_bef837 -P 3306 -u ${{ secrets.DB_USER }} -p"${{ secrets.DB_PASSWORD }}" < script.sql
     
