@@ -8,4 +8,4 @@ export BRANCH_NAME="$current_branch"
 
 # Executar o segundo script
 python script.py
-#mysql < script.sql
+mysql < script.sql
