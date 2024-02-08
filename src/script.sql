@@ -1,4 +1,4 @@
-SET @branch_name = (SELECT TRIM(TRAILING '\n' FROM LOAD_FILE('branch_name.txt')));
+SET @branch_name = (SELECT TRIM(TRAILING '\n' FROM LOAD_FILE('src/branch_name.txt')));
 
 SELECT CONCAT('O nome da view é: ', @branch_name);
 
