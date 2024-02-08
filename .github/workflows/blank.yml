@@ -37,6 +37,6 @@ jobs:
 
       - name: Execute SQL Script
         run: |
-          mysql -h your_database_host -u your_username -pyour_password -e "source path/to/your/script.sql"
+          mysql -u root -e "source script.sql"
 
 
