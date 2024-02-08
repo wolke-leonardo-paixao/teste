@@ -28,8 +28,12 @@ jobs:
     
         - name: Esperar pelo MySQL estar pronto
           run: |
-            dockerize -wait tcp://localhost:3306 -timeout 1m
+            until mysqladmin ping -h localhost -P 3306 --silent; do
+              echo 'Aguardando o MySQL estar pronto...'
+              sleep 5
+            done
+        
     
         - name: Executar testes SQL
-          run: mysql -h localhost -P 3306 -u ${{ secrets.DB_USER }} -p"${{ secrets.DB_PASSWORD }}" < test.sql
+          run: mysql -h localhost -P 3306 -u ${{ secrets.DB_USER }} -p"${{ secrets.DB_PASSWORD }}" < script.sql
     
