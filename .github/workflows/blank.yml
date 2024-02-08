@@ -37,6 +37,6 @@ jobs:
 
       - name: Execute SQL Script
         run: |
-          mysql -u root -e "source script.sql"
+          mysql -u root -S /var/run/mysqld/mysqld.sock -e "source script.sql"
 
 
