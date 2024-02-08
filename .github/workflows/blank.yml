@@ -18,6 +18,8 @@ jobs:
           path: env_file.env
 
       - name: Obter nome da branch
-        run: echo "O nome da branch é ${GITHUB_REF#refs/heads/}"
+        run: |
+            branch_name=${GITHUB_REF#refs/heads/}
+            echo "O nome da branch é $branch_name"
 
       
