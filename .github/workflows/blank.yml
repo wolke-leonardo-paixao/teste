@@ -32,11 +32,14 @@ jobs:
       - name: Debug VIEW_NAME
         run: echo "VIEW_NAME is $VIEW_NAME"
 
-      - name: Install MySQL Client
-        run: sudo apt-get install mysql-client -y
-
-      - name: Execute SQL Script
-        run: |
-          mysql -u root -S /var/run/mysqld/mysqld.sock -e "source script.sql"
-
-
+      - name: Configurar MySQL
+        uses: helaili/setup-mysql@v1
+        with:
+          mysql-version: '8.0'
+          mysql-host: ${{ secrets.DB_HOST}}
+          mysql-user: ${{ secrets.DB_USER }}
+          mysql-password: ${{ secrets.DB_PASSWORD }}
+  
+      - name: Executar testes SQL
+        run: mysql -h ${{ secrets.DB_HOST}} -u ${{ secrets.DB_USER }} -p"${{ secrets.DB_PASSWORD }}" < test.sql
+  
