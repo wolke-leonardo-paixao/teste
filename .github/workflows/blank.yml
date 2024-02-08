@@ -32,6 +32,11 @@ jobs:
       - name: Debug VIEW_NAME
         run: echo "VIEW_NAME is $VIEW_NAME"
 
-      - name: Run PSQL script
-        run: python script.py
+      - name: Install MySQL Client
+        run: sudo apt-get install mysql-client -y
+
+      - name: Execute SQL Script
+        run: |
+          mysql -h your_database_host -u your_username -pyour_password -e "source path/to/your/script.sql"
+
 

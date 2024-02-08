@@ -1,14 +1,10 @@
 #!/bin/python
-
 import os
 import re
+import subprocess
 
-# Obtém o nome da branch a partir da variável de ambiente
 branch_name = os.getenv("BRANCH_NAME")
 
-print(branch_name)
-
-# Remove o prefixo 'feature/' do nome da branch
 if branch_name is not None:
     # Remove o prefixo 'feature/' do nome da branch, se presente
     branch_name = re.sub(r'^feature/', '', branch_name)
@@ -20,7 +16,10 @@ if branch_name is not None:
         view_name = 'dlh-prd-brlm-zcb'
     else:
         view_name = 'Branch desconhecida.'
-    # Imprime o nome da view
+
     print('O nome da view é:', view_name)
+
+    subprocess.run(['script.sql', view_name], check=True)
+
 else:
     print('A variável de ambiente BRANCH_NAME não está definida.')
