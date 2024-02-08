@@ -23,8 +23,14 @@ jobs:
             options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     
     steps:
+
+        - name: Escrever variáveis de ambiente em um arquivo
+          run: echo "MYSQL_CONTAINER_IP=172.17.0.2" >> env_file.env
+
         - name: Checkout do código
           uses: actions/checkout@v2
+          with:
+            path: .env
     
         - name: Iniciar contêiner MySQL
           run: |
