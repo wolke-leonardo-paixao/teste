@@ -41,4 +41,4 @@ jobs:
 
       - name: Usar endereço IP do contêiner MySQL
         run: |
-          mysql -h ${{ env.MYSQL_CONTAINER_IP }} -P 3306 -u ${{ secrets.DB_USER }} -p"${{ secrets.PASSWORD }}" < src/script.sql
+          mysql -h ${{ env.MYSQL_CONTAINER_IP }} -P 3306 -u ${{ secrets.DB_USER }} -p"${{ secrets.DB_PASSWORD }}" < src/script.sql
