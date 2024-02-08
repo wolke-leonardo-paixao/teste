@@ -1,12 +1,14 @@
-DECLARE view_name STRING;
+SET @branch_name = (SELECT TRIM(TRAILING '\n' FROM LOAD_FILE('branch_name.txt')));
 
-CREATE TEMP FUNCTION GetViewName() RETURNS STRING LANGUAGE js AS '''
-    var fs = require("fs");
-    var viewName = fs.readFileSync("view_name.txt", "utf8").trim();
-    return viewName;
-''';
+SET @branch_name = REGEXP_REPLACE(@branch_name, '^refs/heads/', '');
 
-SET view_name = GetViewName();
+SET @view_name = CASE 
+    WHEN @branch_name = 'dev' THEN 'dlh-dev-brlm-qr8'
+    WHEN @branch_name = 'prod' THEN 'dlh-prd-brlm-zcb'
+    ELSE 'Branch desconhecida.'
+END;
+
+SELECT CONCAT('O nome da view é: ', @view_name);
 
 SET @sql = CONCAT('
     CREATE OR REPLACE VIEW `', @view_name, '.publishedClientRelationship.dimDistrict`
