@@ -1,6 +1,12 @@
 DECLARE view_name STRING;
 
-SET view_name = @1;
+CREATE TEMP FUNCTION GetViewName() RETURNS STRING LANGUAGE js AS '''
+    var fs = require("fs");
+    var viewName = fs.readFileSync("view_name.txt", "utf8").trim();
+    return viewName;
+''';
+
+SET view_name = GetViewName();
 
 SET @sql = CONCAT('
     CREATE OR REPLACE VIEW `', @view_name, '.publishedClientRelationship.dimDistrict`

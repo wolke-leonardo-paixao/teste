@@ -19,7 +19,7 @@ if branch_name is not None:
 
     print('O nome da view é:', view_name)
 
-    subprocess.run(['./script.sql', view_name], check=True)
-
+    with open('view_name.txt', 'w') as file:
+        file.write(view_name)
 else:
     print('A variável de ambiente BRANCH_NAME não está definida.')
