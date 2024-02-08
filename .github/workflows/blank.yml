@@ -32,6 +32,6 @@ jobs:
       - name: Debug VIEW_NAME
         run: echo "VIEW_NAME is $VIEW_NAME"
 
-      - name: Run Python script
-        run: python script.py
+      - name: Run PSQL script
+        run: mysql script.sql
 
