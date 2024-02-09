@@ -22,16 +22,16 @@ jobs:
         run: |
           docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=senha123 mysql:latest
     
-      - name: Build script
-        run: |
-          current_branch=$(git rev-parse --abbrev-ref HEAD)
-          export BRANCH_NAME="$current_branch"
-          sed "s/@branch_name/$BRANCH_NAME/g" src/script.sql > temp/script_temp.sql
+    #  - name: Build script
+    #    run: |
+    #      current_branch=$(git rev-parse --abbrev-ref HEAD)
+    #      export BRANCH_NAME="$current_branch"
+    #      sed "s/@branch_name/$BRANCH_NAME/g" src/script.sql > temp/script_temp.sql
     
       - name: Execute script in MySQL container
         run: |
-          docker cp temp/script_temp.sql mysql-container:/temp/script_temp.sql
-          docker exec -i mysql-container mysql -u root -psenha123 < /temp/script_temp.sql
+          docker cp script.sql mysql-container:/script.sql
+          docker exec -i mysql-container mysql -u root -psenha123 < /script.sql
     
 
       
