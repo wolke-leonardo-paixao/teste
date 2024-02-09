@@ -1,0 +1,10 @@
+#!/bin/bash
+
+input_file="src/script.sql"
+temp_file=$(mktemp)
+
+sed '1,7 s/^/-- /' "$input_file" > "$temp_file"
+
+mv "$temp_file" "$input_file"
+
+echo "As sete primeiras linhas do arquivo foram comentadas."
