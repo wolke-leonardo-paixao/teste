@@ -9,29 +9,35 @@ on:
 jobs:
   print-variable:
     runs-on: ubuntu-latest
-    env:
-      BRANCH_NAME: ${{ github.event.ref }}
 
     steps:
-      - name: Checkout repository
+
+      - name: Carregar arquivo de ambiente
         uses: actions/checkout@v2
 
-      - name: Set environment variables based on branch
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+    
+      - name: Run MySQL container
         run: |
-          if [ "$BRANCH_NAME" = "refs/heads/dev" ]; then
-            echo "Setting environment variables for dev branch"
-            export VIEW_NAME=dlh-dev-brlm-qr8
-          elif [ "$BRANCH_NAME" = "refs/heads/prod" ]; then
-            echo "Setting environment variables for prod branch"
-            export VIEW_NAME=dlh-prd-brlm-zcb
-          else
-            echo "Branch not recognized, setting default variables"
-            export VIEW_NAME=default-view-name
-          fi
+          docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=123456 mysql:latest
+    
+    #  - name: Build script
+    #    run: |
+    #      current_branch=$(git rev-parse --abbrev-ref HEAD)
+    #      export BRANCH_NAME="$current_branch"
+    #      sed "s/@branch_name/$BRANCH_NAME/g" src/script.sql > temp/script_temp.sql
+      - name: verificar containers
+        run:   docker ps
+    
+      - name: Copy script to MySQL container
+        run: docker cp src/script.sql mysql-container:/src
+  
+      - name: Execute script in MySQL container
+        run: |
+          docker exec -i mysql-container mysql -u root -p123456 < src/script.sql 
 
-      - name: Debug VIEW_NAME
-        run: echo "VIEW_NAME is $VIEW_NAME"
-
-      - name: Run PSQL script
-        run: python script.py
-
+      
+      
+      
+      
