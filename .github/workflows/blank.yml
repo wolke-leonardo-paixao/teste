@@ -14,8 +14,6 @@ jobs:
 
       - name: Carregar arquivo de ambiente
         uses: actions/checkout@v2
-        with:
-          path: env_file.env
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
