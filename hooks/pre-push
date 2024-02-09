@@ -16,4 +16,4 @@ mysql_query+="END;"
 mysql_query+="$(sed "s/@view_name/$view_name/g" script.sql)"
 
 # Executar o comando SQL no MySQL
-echo "$mysql_query" | docker exec -i mysql_container mysql -u root -p123456
+echo "$mysql_query" | docker exec -i mysql mysql -u root -p123456
