@@ -4,7 +4,7 @@
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 
 # Definir o nome do arquivo temporário
-branch_file="branch.txt"
+branch_file="temp/branch.txt"
 
 # Criar arquivo temporário contendo o nome do branch
 echo "$current_branch" > "$branch_file"
