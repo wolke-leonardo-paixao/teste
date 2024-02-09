@@ -28,6 +28,12 @@ jobs:
 
       - name: verificar containers
         run:   docker ps
+
+      - name: Get Branch Name
+        run: echo "BRANCH_NAME=$(echo $GITHUB_REF | awk -F'/' '{print $3}')" >> $GITHUB_ENV
+
+      - name: Update script SQL with branch name
+        run: sed -i "s/@branch_name/$BRANCH_NAME/g" src/script.sql
     
       - name: Copy script to MySQL container
         run: docker cp src/script.sql mysql-container:/src

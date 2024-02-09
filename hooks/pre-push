@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Obter o nome do branch atual
-current_branch=$(git rev-parse --abbrev-ref HEAD)
+#current_branch=$(git rev-parse --abbrev-ref HEAD)
 
 # Definir o nome do arquivo SQL principal
-script_sql=src/script.sql
+#script_sql=src/script.sql
 
 # Substituir todas as instâncias de "@branch_name" pelo nome do branch atual
-sed -i "s/@branch_name/$current_branch/g" "$script_sql"
+#sed -i "s/@branch_name/$current_branch/g" "$script_sql"
