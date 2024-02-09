@@ -35,6 +35,7 @@ jobs:
   
       - name: Execute script in MySQL container
         run: |
-          docker exec -i mysql-container mysql -u root -p < src/script.sql
+          echo "123456" | docker exec -i mysql-container mysql -u root -p < src/script.sql
+      
       
       
