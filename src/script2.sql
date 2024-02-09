@@ -1,10 +1,12 @@
+@branch = 'dev'
+
 -- Exibir o nome do branch
-SELECT CONCAT('O nome do branch é: ', dev);
+SELECT CONCAT('O nome do branch é: ', @branch);
 
 -- Definir o nome da view com base no branch
 SET @view_name = CASE 
-    WHEN dev = 'dev' THEN 'dlh-dev-brlm-qr8'
-    WHEN dev = 'prod' THEN 'dlh-prd-brlm-zcb'
+    WHEN @branch = 'dev' THEN 'dlh-dev-brlm-qr8'
+    WHEN @branch = 'prod' THEN 'dlh-prd-brlm-zcb'
     ELSE 'Branch desconhecida.'
 END;
 
