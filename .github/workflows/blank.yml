@@ -27,11 +27,12 @@ jobs:
     #      current_branch=$(git rev-parse --abbrev-ref HEAD)
     #      export BRANCH_NAME="$current_branch"
     #      sed "s/@branch_name/$BRANCH_NAME/g" src/script.sql > temp/script_temp.sql
-      - name: verificar containers
-        run:   docker ps
     
       - name: Copy script to MySQL container
         run: docker cp src/script.sql mysql-container:/src
+
+      - name: verificar containers
+        run:   docker ps
   
       - name: Execute script in MySQL container
         run: |
