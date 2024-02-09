@@ -1,5 +1,3 @@
-USE taverna
-
 SET @branch = 'dev';
 
 -- Exibir o nome do branch
