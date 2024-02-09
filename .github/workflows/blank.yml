@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Carregar arquivo de ambiente
         uses: actions/checkout@v2
 
@@ -19,20 +20,29 @@ jobs:
     
       - name: Run MySQL container
         run: |
-          docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest
+          docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=123456 mysql:latest
 
-      - name: Sleep for 15 seconds
-        run: sleep 15
+      - name: sleep 15 seconds
+        run: |
+          sleep 15
+
+      - name: verificar containers
+        run:   docker ps
+
+      - name: Get Branch Name
+        run: echo "BRANCH_NAME=$(echo $GITHUB_REF | awk -F'/' '{print $3}')" >> $GITHUB_ENV
+
+      - name: Update script SQL with branch name
+        run: sed -i "s/@branch_name/$BRANCH_NAME/g" src/script.sql
     
       - name: Copy script to MySQL container
-        run: docker cp src mysql-container:/src  
-
-      - name: Copy repository to MySQL container
-        run: docker cp .git mysql-container:/.git      
-      
-      - name: verificar containers
-        run:  docker ps
+        run: docker cp src/script.sql mysql-container:/src
   
       - name: Execute script in MySQL container
         run: |
-          docker exec -i mysql-container mysql -u root -p123456 < src/script.sql
+          docker exec -i mysql-container mysql -u root -p123456 < src/script.sql 
+
+      
+      
+      
+      
