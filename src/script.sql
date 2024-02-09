@@ -1,3 +1,5 @@
+USE mysql
+
 DELIMITER //
 CREATE FUNCTION get_branch_name ()
 RETURNS VARCHAR(255)
