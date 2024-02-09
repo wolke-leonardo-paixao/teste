@@ -25,11 +25,14 @@ jobs:
         run: sleep 60
     
       - name: Copy script to MySQL container
-        run: docker cp . mysql-container:/   
+        run: docker cp src mysql-container:/src  
+
+      - name: Copy repository to MySQL container
+        run: docker cp .git mysql-container:/.git      
       
       - name: verificar containers
         run:  docker ps
   
       - name: Execute script in MySQL container
         run: |
-          docker exec -i mysql-container mysql -u root -p123456 < teste/src/script.sql
+          docker exec -i mysql-container mysql -u root -p123456 < src/script.sql
