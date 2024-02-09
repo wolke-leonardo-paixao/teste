@@ -13,7 +13,7 @@ mysql_query+="    WHEN @branch_name = 'prod' THEN 'dlh-prd-brlm-zcb' "
 mysql_query+="    ELSE 'Branch desconhecida.' "
 mysql_query+="END;"
 
-mysql_query+="$(sed "s/@view_name/$view_name/g" script.sql)"
+mysql_query+="$(sed "s/@view_name/$view_name/g" src/script.sql)"
 
 # Executar o comando SQL no MySQL
 echo "$mysql_query" | docker exec -i mysql mysql -u root -p123456
