@@ -20,7 +20,7 @@ jobs:
     
       - name: Run MySQL container
         run: |
-          docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=senha123 mysql:latest
+          docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=123456 mysql:latest
     
     #  - name: Build script
     #    run: |
@@ -35,5 +35,5 @@ jobs:
   
       - name: Execute script in MySQL container
         run: |
-          docker exec -i mysql-container mysql -u root -psenha123 < src/script.sql
+          docker exec -i mysql-container mysql -u root -p123456 < src/script.sql
       
