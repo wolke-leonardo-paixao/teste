@@ -1,4 +1,4 @@
-SET @branch = 'dev'
+SET @branch = 'dev';
 
 -- Exibir o nome do branch
 SELECT CONCAT('O nome do branch é: ', @branch);
