@@ -1,4 +1,8 @@
-SET @view_name
+SET @view_name = CASE 
+    WHEN @branch_name = 'dev' THEN 'dlh-dev-brlm-qr8'
+    WHEN @branch_name = 'prod' THEN 'dlh-prd-brlm-zcb'
+    ELSE 'Branch desconhecida.'
+END;
 
 SELECT CONCAT('O nome da view é: ', @view_name);
 
