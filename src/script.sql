@@ -1,6 +1,6 @@
 SET @view_name = CASE 
-    WHEN dev = 'dev' THEN 'dlh-dev-brlm-qr8'
-    WHEN dev = 'prod' THEN 'dlh-prd-brlm-zcb'
+    WHEN @Branch_name = 'dev' THEN 'dlh-dev-brlm-qr8'
+    WHEN @Branch_name = 'prod' THEN 'dlh-prd-brlm-zcb'
     ELSE 'Branch desconhecida.'
 END;
 

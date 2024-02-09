@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Obter o nome do branch atual
+current_branch=$(git rev-parse --abbrev-ref HEAD)
+
+# Definir o nome do arquivo temporário
+branch_file="branch.txt"
+
+# Criar arquivo temporário contendo o nome do branch
+echo "$current_branch" > "$branch_file"
+
+# Adicione o arquivo temporário ao git para que ele seja enviado ao repositório remoto
+git add "$branch_file"

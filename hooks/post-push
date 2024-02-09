@@ -1,5 +1,6 @@
 #!/bin/bash
 
-sed -i '1,7 s/^/-- /' script.sql
+# Remover o arquivo temporário após o push
+branch_file="branch.txt"
 
-echo "As sete primeiras linhas do arquivo foram comentadas."
+rm "$branch_file"
