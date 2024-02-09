@@ -1,4 +1,4 @@
-USE teste
+USE taverna
 
 SET @branch = 'dev';
 
