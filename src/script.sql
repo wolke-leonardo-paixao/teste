@@ -1,4 +1,6 @@
-SELECT CONCAT('O nome do branch é: ', '$BRANCH_NAME');
+SET @branch_name = ?;
+
+SELECT CONCAT('O nome do branch é: ', @branch_name);
 
 SET @view_name = CASE 
     WHEN '$BRANCH_NAME' = 'dev' THEN 'dlh-dev-brlm-qr8'

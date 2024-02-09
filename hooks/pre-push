@@ -1,9 +1,3 @@
-#!/bin/bash
-
-# Obter o nome do branch atual
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 
-# Definir a variável de ambiente BRANCH_NAME
-export BRANCH_NAME="$current_branch"
-
-docker exec -i mysql mysql -u root -p123456 < src/script.sql
+docker exec -i mysql mysql -u root -p123456 -e "SET @branch_name='$current_branch';" < src/script.sql
