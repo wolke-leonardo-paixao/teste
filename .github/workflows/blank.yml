@@ -21,12 +21,11 @@ jobs:
       - name: Run MySQL container
         run: |
           docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=123456 mysql:latest
-    
-    #  - name: Build script
-    #    run: |
-    #      current_branch=$(git rev-parse --abbrev-ref HEAD)
-    #      export BRANCH_NAME="$current_branch"
-    #      sed "s/@branch_name/$BRANCH_NAME/g" src/script.sql > temp/script_temp.sql
+
+      - name: sleep 15 seconds
+        run: |
+          sleep 15
+
       - name: verificar containers
         run:   docker ps
     
