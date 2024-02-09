@@ -1,13 +1,10 @@
 #!/bin/bash
 
 # Obter o nome do branch atual
-current_branch=$(git rev-parse --abbrev-ref HEAD)
+#current_branch=$(git rev-parse --abbrev-ref HEAD)
 
-# Definir a variável de ambiente BRANCH_NAME
-export BRANCH_NAME="$current_branch"
+# Definir o nome do arquivo SQL principal
+#script_sql=src/script.sql
 
-sed "s/@branch_name/$BRANCH_NAME/g" src/script.sql > temp/script_temp.sql
-
-docker exec -i mysql mysql -u root -p123456 < temp/script_temp.sql
-
-rm temp/script_temp.sql
+# Substituir todas as instâncias de "@branch_name" pelo nome do branch atual
+#sed -i "s/@branch_name/$current_branch/g" "$script_sql"
