@@ -1,8 +1,6 @@
-SELECT CONCAT('O nome da branch é: ', @branch_name);
-
 SET @view_name = CASE 
-    WHEN '@branch_name' = 'dev' THEN 'dlh-dev-brlm-qr8'
-    WHEN '@branch_name' = 'prod' THEN 'dlh-prd-brlm-zcb'
+    WHEN @branch_name = 'dev' THEN 'dlh-dev-brlm-qr8'
+    WHEN @branch_name = 'prod' THEN 'dlh-prd-brlm-zcb'
     ELSE 'Branch desconhecida.'
 END;
 
@@ -19,4 +17,3 @@ SET @sql = CONCAT('
 PREPARE stmt FROM @sql_query;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
-
