@@ -42,8 +42,8 @@ jobs:
         run: |
           docker run --name mysql-container -e MYSQL_ROOT_PASSWORD=123456 -d mysql:latest
 
-      - name: Sleep for 60 seconds
-        run: sleep 60
+      - name: Sleep for 15 seconds
+        run: sleep 15
     
       - name: Copy script to MySQL container
         run: docker cp src mysql-container:/src  
@@ -56,4 +56,4 @@ jobs:
   
       - name: Execute script in MySQL container
         run: |
-          docker exec -i mysql mysql -u root -p123456 -e "SET @view_name='${{ env.VIEW_NAME }}'; source src/script.sql"
+          docker exec -i mysql-container mysql -u root -p123456 -e "SET @view_name='${{ env.VIEW_NAME }}'; source src/script.sql"
