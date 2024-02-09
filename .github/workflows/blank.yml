@@ -32,4 +32,4 @@ jobs:
   
       - name: Execute script in MySQL container
         run: |
-          docker exec -i mysql-container mysql -u root -p123456 < src/script.sql
+          docker exec -i mysql-container bash -c "sed 's/@branch_name/${{ github.ref }}/' src/script.sql | mysql -u root -p123456"
