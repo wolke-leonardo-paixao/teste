@@ -1,3 +1,5 @@
+SET @branch_name = '$BRANCH_NAME';
+
 SELECT CONCAT('O nome do branch é: ', @branch_name);
 
 SET @view_name = CASE 
