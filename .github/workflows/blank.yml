@@ -28,10 +28,9 @@ jobs:
     #      export BRANCH_NAME="$current_branch"
     #      sed "s/@branch_name/$BRANCH_NAME/g" src/script.sql > temp/script_temp.sql
     
+      - name: Copy script to MySQL container
+        run: docker cp src/script.sql mysql-container:/script.sql
+  
       - name: Execute script in MySQL container
         run: |
-          docker cp src/script.sql mysql-container:script.sql
-          docker exec -i mysql-container mysql -u root -psenha123 < script.sql
-    
-
-      
+          docker exec -i mysql-container mysql -u root -psenha123 < /script.sql  
