@@ -1,3 +1,5 @@
+USE MYSQL
+
 SET @branch = 'dev';
 
 -- Exibir o nome do branch
