@@ -17,16 +17,23 @@ jobs:
         with:
           path: env_file.env
 
-      - name: Obter nome da branch
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+    
+      - name: Run MySQL container
         run: |
-            branch_name=${GITHUB_REF#refs/heads/}
-            echo "O nome da branch é $branch_name"
-
-            bq query \
-            --use_legacy_sql=false \
-            --parameter='branch_name:STRING:'"$branch_name"'' \
-            --replace \
-            --nouse_legacy_sql \
-            "$(cat src/script.sql)"
+          docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=senha123 mysql:latest
+    
+      - name: Build script
+        run: |
+          current_branch=$(git rev-parse --abbrev-ref HEAD)
+          export BRANCH_NAME="$current_branch"
+          sed "s/@branch_name/$BRANCH_NAME/g" src/script.sql > temp/script_temp.sql
+    
+      - name: Execute script in MySQL container
+        run: |
+          docker cp temp/script_temp.sql mysql-container:/temp/script_temp.sql
+          docker exec -i mysql-container mysql -u root -psenha123 < /temp/script_temp.sql
+    
 
       
