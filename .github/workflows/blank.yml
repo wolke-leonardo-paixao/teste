@@ -22,9 +22,9 @@ jobs:
         run: |
           docker run -d --name mysql-container -e MYSQL_ROOT_PASSWORD=123456 mysql:latest
 
-      - name: sleep 15 seconds
+      - name: sleep 10 seconds
         run: |
-          sleep 15
+          sleep 10
 
       - name: verificar containers
         run:   docker ps
