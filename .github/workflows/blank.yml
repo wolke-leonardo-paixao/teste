@@ -14,27 +14,6 @@ jobs:
       - name: Carregar arquivo de ambiente
         uses: actions/checkout@v2
 
-      - name: Set up Git
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-
-      - name: Determine view name
-        id: view_name
-        run: |
-          current_branch=$(git rev-parse --abbrev-ref HEAD)
-          if [[ $current_branch == "dev" ]]; then
-            echo "dlh-dev-brlm-qr8"
-          elif [[ $current_branch == "prod" ]]; then
-            echo "dlh-prd-brlm-zcb"
-          else
-            echo "Branch desconhecida."
-          fi
-
-      - name: Set view name as environment variable
-        run: |
-          echo "VIEW_NAME=$(echo "${{ steps.view_name.outputs.stdout }}")" >> $GITHUB_ENV
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
     
@@ -56,4 +35,4 @@ jobs:
   
       - name: Execute script in MySQL container
         run: |
-          docker exec -i mysql-container mysql -u root -p123456 -e "SET @view_name='${{ env.VIEW_NAME }}'; source src/script.sql"
+          docker exec -i mysql-container mysql -u root -p123456 < src/script.sql
