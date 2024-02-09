@@ -1,10 +1,8 @@
-SET @branch_name = '$BRANCH_NAME';
-
-SELECT CONCAT('O nome do branch é: ', @branch_name);
+SELECT CONCAT('O nome do branch é: ', '$BRANCH_NAME');
 
 SET @view_name = CASE 
-    WHEN @branch_name = 'dev' THEN 'dlh-dev-brlm-qr8'
-    WHEN @branch_name = 'prod' THEN 'dlh-prd-brlm-zcb'
+    WHEN '$BRANCH_NAME' = 'dev' THEN 'dlh-dev-brlm-qr8'
+    WHEN '$BRANCH_NAME' = 'prod' THEN 'dlh-prd-brlm-zcb'
     ELSE 'Branch desconhecida.'
 END;
 

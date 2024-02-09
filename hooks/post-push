@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# Remover o arquivo temporário após o push
-branch_file="branch.txt"
+# Obter o nome do branch atual
+#current_branch=$(git rev-parse --abbrev-ref HEAD)
 
-rm "$branch_file"
+# Definir a variável de ambiente BRANCH_NAME
+#export BRANCH_NAME="$current_branch"
+
+#sed "s/@branch_name/$BRANCH_NAME/g" src/script.sql > temp/script_temp.sql
+
+#docker exec -i mysql mysql -u root -p123456 < temp/script_temp.sql
