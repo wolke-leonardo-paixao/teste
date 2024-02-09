@@ -4,10 +4,16 @@
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 
 # Definir a variável de ambiente BRANCH_NAME
-export BRANCH_NAME="$current_branch"
+mysql_query="SET @branch_name = '$current_branch';"
 
-sed "s/@branch_name/$BRANCH_NAME/g" src/script.sql > temp/script_temp.sql
+# Adicionar o restante do script SQL
+mysql_query+="SET @view_name = CASE "
+mysql_query+="    WHEN @branch_name = 'dev' THEN 'dlh-dev-brlm-qr8' "
+mysql_query+="    WHEN @branch_name = 'prod' THEN 'dlh-prd-brlm-zcb' "
+mysql_query+="    ELSE 'Branch desconhecida.' "
+mysql_query+="END;"
 
-docker exec -i mysql mysql -u root -p123456 < temp/script_temp.sql
+mysql_query+="$(sed "s/@view_name/$view_name/g" script.sql)"
 
-rm temp/script_temp.sql
+# Executar o comando SQL no MySQL
+echo "$mysql_query" | docker exec -i mysql_container mysql -u root -p123456
