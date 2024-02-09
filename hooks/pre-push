@@ -3,8 +3,5 @@
 # Obter o nome do branch atual
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 
-# Definir a variável de ambiente BRANCH_NAME
-export BRANCH_NAME="$current_branch"
-
-# Executar o script SQL dentro do Docker, passando a variável de ambiente
-docker exec -i mysql mysql -u root -p123456 -e "SET @branch_name='$BRANCH_NAME';" < src/script.sql
+# Executar o script SQL dentro do Docker, passando o nome do branch como uma variável
+docker exec -i mysql mysql -u root -p123456 -e "SET @branch_name='$current_branch'; source src/script.sql"
