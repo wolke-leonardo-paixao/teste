@@ -1,10 +1,13 @@
 #!/bin/bash
 
 # Obter o nome do branch atual
-#current_branch=$(git rev-parse --abbrev-ref HEAD)
+current_branch=$(git rev-parse --abbrev-ref HEAD)
 
 # Definir a variável de ambiente BRANCH_NAME
-#export BRANCH_NAME="$current_branch"
+export BRANCH_NAME="$current_branch"
 
-# Executar o segundo script
-#python src/script.py
+sed "s/@branch_name/$BRANCH_NAME/g" src/script.sql > temp/script_temp.sql
+
+docker exec -i mysql mysql -u root -p123456 < temp/script_temp.sql -f temp/script_temp.sql
+
+rm temp/script_temp.sql
