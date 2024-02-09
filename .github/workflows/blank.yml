@@ -28,9 +28,6 @@ jobs:
 
       - name: verificar containers
         run:   docker ps
-
-      - name: Copy temp folder
-        run: docker cp temp/branch.txt mysql-container:/temp
     
       - name: Copy script to MySQL container
         run: docker cp src/script.sql mysql-container:/src
