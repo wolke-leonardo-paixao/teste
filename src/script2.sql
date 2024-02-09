@@ -1,4 +1,4 @@
-USE MYSQL
+USE teste
 
 SET @branch = 'dev';
 
