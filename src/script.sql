@@ -1,5 +1,3 @@
-SET @branch_name = ?;
-
 SELECT CONCAT('O nome do branch é: ', @branch_name);
 
 SET @view_name = CASE 
