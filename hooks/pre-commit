@@ -9,6 +9,7 @@ find src -type f -name "*" | while read -r file; do
    elif [ "$branch" = "prod" ]; then
         sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
     fi
+    git add "$file"
   fi
-
 done
+
