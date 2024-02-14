@@ -2,6 +2,7 @@
 
 branch=$(git rev-parse --abbrev-ref HEAD)
 
+# Encontrar diretorios e arquivos
 find src -type f -name "*" | while read -r file; do
   if [ -f "$file" ]; then
     if [ "$branch" = "dev" ]; then
