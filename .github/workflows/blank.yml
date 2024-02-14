@@ -17,6 +17,11 @@ jobs:
  
       - name: Get Branch Name
         run: echo "BRANCH_NAME=$(echo $GITHUB_REF | awk -F'/' '{print $3}')" >> $GITHUB_ENV
+
+      - name: Set Git user
+        run: |
+          git config --global user.email "leonardo.paixao@wolkedatasolutions.com"
+          git config --global user.name "wolke-leonardo-paixao"
  
       - name: Update script SQL with branch name
         run: |
@@ -34,7 +39,7 @@ jobs:
               echo "arquivo não encontrado"
             fi
           done
-          
+
           git commit -m "Atualização automática dos identificadores de projeto"
 
           git push origin "$BRANCH_NAME"
