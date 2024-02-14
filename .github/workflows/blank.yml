@@ -20,13 +20,17 @@ jobs:
  
       - name: Update script SQL with branch name
         run: |
-          find src -type f -name "*.sql" | while read -r file; do
-          if [ -f "$file" ]; then
-            if [ "$BRANCH_NAME" = "dev" ]; then
-              sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
-            elif [ "$BRANCH_NAME" = "prod" ]; then
-              sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
+          for file in src/*.sql; do
+            if [ -f "$file" ]; then
+              if [[ "$BRANCH_NAME" == "dev" ]]; then
+                sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
+              elif [[ "$BRANCH_NAME" == "prod" ]]; then
+                sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
+              else
+                echo "Branch não reconhecido: $BRANCH_NAME"
+              fi
+            else 
+              echo "arquivo não encontrado"
             fi
-          else
-            echo "arquivo não encotrado"
-          fi
+          done
+      
