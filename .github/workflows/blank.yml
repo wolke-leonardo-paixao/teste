@@ -29,8 +29,13 @@ jobs:
               else
                 echo "Branch não reconhecido: $BRANCH_NAME"
               fi
+              git add "$file"
             else 
               echo "arquivo não encontrado"
             fi
           done
+          
+          git commit -m "Atualização automática dos identificadores de projeto"
+
+          git push origin "$BRANCH_NAME"
       
