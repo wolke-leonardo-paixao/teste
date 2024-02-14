@@ -7,7 +7,7 @@ echo "Diretório: ../src/"
 ls -l src/
 
 # Usando find para procurar arquivos .sql no diretório
-find ../src -type f -name "*.sql" | while read -r file; do
+find src -type f -name "*.sql" | while read -r file; do
     if [ -f "$file" ]; then
         # Faça alguma coisa com o arquivo
         echo "Arquivo SQL encontrado: $file"
