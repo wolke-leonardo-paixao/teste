@@ -6,7 +6,6 @@ SET @sql = CONCAT('
     AS SELECT * FROM ', 'dlh-prd-brlm-zcb', '.semantic.dimDistrict;'
 );
 
-PREPARE stmt FROM @sql_query;
+PREPARE stmt FROM @sql;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
---teste
