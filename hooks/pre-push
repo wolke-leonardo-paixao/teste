@@ -18,9 +18,9 @@ ls -l src/
 
 find src -type f -name "*.sql" | while read -r file; do
   if [ -f "$file" ]; then
-    if [ "$branch" = "refs/head/dev" ]; then
+    if [ "$branch" = "dev" ]; then
         sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
-    elif [ "$branch" = "refs/head/prod" ]; then
+    elif [ "$branch" = "prod" ]; then
         sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
     fi
   fi
