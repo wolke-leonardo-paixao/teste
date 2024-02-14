@@ -20,7 +20,7 @@ jobs:
  
       - name: Update script SQL with branch name
         run: |
-          for file in /mnt/leroy/lmbr-lakehouse-sql-structures/*; do
+          for file in /HOOKS/src/*; do
             if [ -f "$file" ]; then
               if [ "$BRANCH_NAME" = "dev" ]; then
                 sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
