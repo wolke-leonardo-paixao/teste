@@ -3,7 +3,7 @@
 branch=$(git rev-parse --abbrev-ref HEAD)
 
 
-for file in HOOKS/src/*.sql; do
+for file in src/*.sql; do
     if [ -f "$file" ]; then
         # Faça alguma coisa com o arquivo
         echo "Arquivo SQL encontrado: $file"
