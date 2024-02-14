@@ -20,7 +20,7 @@ jobs:
  
       - name: Update script SQL with branch name
         run: |
-          find src -type f -name "*" | while read -r file; do
+          find src -type f -name "*.sql" | while read -r file; do
           if [ -f "$file" ]; then
             if [ "$BRANCH_NAME" = "dev" ]; then
               sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
