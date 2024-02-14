@@ -1,13 +1,13 @@
 #!/bin/bash
 
-branch=$(git rev-parse --abbrev-ref HEAD)
+branch=$(git symbolic-ref --short HEAD)
 
 for file in HOOKS/src/*; do
   if [ -f "$file" ]; then
     if [ "$branch" = "dev" ]; then
-      sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
+        sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
     elif [ "$branch" = "prod" ]; then
-      sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
+        sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
     fi
   fi
 done
