@@ -28,5 +28,3 @@ jobs:
               sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
             fi
           fi
-      
-          done
