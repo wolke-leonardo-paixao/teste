@@ -1,10 +1,10 @@
 #!/bin/bash
 
-branch=$(git rev-parse --abbrev-ref HEAD)
+#branch=$(git rev-parse --abbrev-ref HEAD)
 
 
-echo "Diretório: ../src/"
-ls -l src/
+#echo "Diretório: ../src/"
+#ls -l src/
 
 # Usando find para procurar arquivos .sql no diretório
 #find src -type f -name "*.sql" | while read -r file; do
@@ -16,13 +16,13 @@ ls -l src/
 #    fi
 #done
 
-find src -type f -name "*.sql" | while read -r file; do
-  if [ -f "$file" ]; then
-    if [ "$branch" = "dev" ]; then
-        sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
-    elif [ "$branch" = "prod" ]; then
-        sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
-    fi
-  fi
+#find src -type f -name "*" | while read -r file; do
+#  if [ -f "$file" ]; then
+#    if [ "$branch" = "dev" ]; then
+#        sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
+#   elif [ "$branch" = "prod" ]; then
+#        sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
+#    fi
+#  fi
 
-done
+#done
