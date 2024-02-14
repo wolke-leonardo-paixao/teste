@@ -2,7 +2,7 @@
 
 branch=$(git rev-parse --abbrev-ref HEAD)
 
-for file in HOOKS/src/*; do
+for file in src/*; do
   if [ -f "$file" ]; then
     if [ "$branch" = "refs/head/dev" ]; then
         sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
