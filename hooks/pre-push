@@ -4,7 +4,7 @@ branch=$(git rev-parse --abbrev-ref HEAD)
 
 
 echo "Diretório: ../src/"
-ls -l ../src/
+ls -l src/
 
 for file in ../src/*.sql; do
     if [ -f "$file" ]; then
