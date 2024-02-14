@@ -3,13 +3,18 @@
 branch=$(git rev-parse --abbrev-ref HEAD)
 
 
+echo "Diretório: ../src/"
+ls -l ../src/
+
 for file in ../src/*.sql; do
     if [ -f "$file" ]; then
         # Faça alguma coisa com o arquivo
         echo "Arquivo SQL encontrado: $file"
+    else
+        echo "Arquivo SQL não encontrado: $file"
     fi
-        echo "não foi encontrado arquivo"
 done
+
 
 #for file in ../src/; do
 #  if [ -f "$file" ]; then
