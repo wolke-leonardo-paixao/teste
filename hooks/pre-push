@@ -8,6 +8,7 @@ for file in HOOKS/src/*.sql; do
         # Faça alguma coisa com o arquivo
         echo "Arquivo SQL encontrado: $file"
     fi
+        echo "não foi encontrado arquivo"
 done
 
 #for file in ../src/; do
