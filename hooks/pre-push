@@ -4,7 +4,7 @@ branch=$(git rev-parse --abbrev-ref HEAD)
 
 
 echo "Diretório: ../src/"
-ls -l ../src/
+ls -l src/
 
 # Usando find para procurar arquivos .sql no diretório
 find ../src -type f -name "*.sql" | while read -r file; do
@@ -15,8 +15,6 @@ find ../src -type f -name "*.sql" | while read -r file; do
         echo "Arquivo SQL não encontrado: $file"
     fi
 done
-
-
 
 #for file in ../src/; do
 #  if [ -f "$file" ]; then
