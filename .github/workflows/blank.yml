@@ -26,7 +26,7 @@ jobs:
               sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
             elif [ "$BRANCH_NAME" = "prod" ]; then
               sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
-            else
-              echo "arquivo não encotrado"
             fi
+          else
+            echo "arquivo não encotrado"
           fi
