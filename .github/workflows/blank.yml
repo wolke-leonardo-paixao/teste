@@ -56,7 +56,7 @@ jobs:
         
 
       - name: Push changes
-        run: git push https://github.com/wolke-leonardo-paixao/ "$BRANCH_NAME"
+        run: git push https://github.com/wolke-leonardo-paixao/ $BRANCH_NAME:$BRANCH_NAME
         env:
           BRANCH_NAME: $BRANCH_NAME
         
