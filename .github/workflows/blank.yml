@@ -49,6 +49,12 @@ jobs:
           else
             git commit -m "Atualização automática dos identificadores de projeto"
           fi
+
+      - name: Print Branch Name
+        run: |
+         echo "Branch Name: $BRANCH_NAME"
+        
+
       - name: Push changes
         run: git push https://github.com/wolke-leonardo-paixao/ "$BRANCH_NAME"
         env:
