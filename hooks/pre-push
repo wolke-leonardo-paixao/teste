@@ -13,12 +13,14 @@ find src -type f -name "*" | while read -r file; do
   if [ -f "$file" ]; then
     if [ "$branch" = "dev" ]; then
         sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
+        git add "$file"
+        git commit -m "alterandoautomatica id do projeto"
     elif [ "$branch" = "prod" ]; then
         sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
+        git add "$file"
+        git commit -m "alterandoautomatica id do projeto"
     fi
   fi
-  git add "$file"
-  git commit -m "alterandoautomatica id do projeto"
 done
 
 # Se todas as verificações passaram, permita o push
