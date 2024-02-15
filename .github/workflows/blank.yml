@@ -48,5 +48,9 @@ jobs:
             echo "Nenhuma alteração para commit."
           else
             git commit -m "Atualização automática dos identificadores de projeto"
-            git push -u origin "$BRANCH_NAME"
           fi
+      - name: Push changes
+        run: git push https://github.com/${{ github.repository_owner }}/${{ github.repository_name }} $BRANCH_NAME
+        env:
+          BRANCH_NAME: $BRANCH_NAME
+        
