@@ -41,11 +41,12 @@ jobs:
             fi
           done
 
+          git remote -v
+
           # Verificar se há alterações para commit
           if git diff --cached --exit-code; then
             echo "Nenhuma alteração para commit."
           else
             git commit -m "Atualização automática dos identificadores de projeto"
-
             git push -u origin "$BRANCH_NAME"
           fi
