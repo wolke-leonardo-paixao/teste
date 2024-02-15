@@ -9,3 +9,4 @@ SET @sql = CONCAT('
 PREPARE stmt FROM @sql;
 EXECUTE stmt;
 DEALLOCATE PREPARE stmt;
+--teste
