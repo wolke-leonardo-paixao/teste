@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
  
     steps:
- 
       - name: Carregar arquivo de ambiente
         uses: actions/checkout@v2
  
@@ -46,5 +45,10 @@ jobs:
             fi
           done
 
-          git commit -m "Atualização automática dos identificadores de projeto"
-          git push origin "$BRANCH_NAME"
+          # Verificar se há alterações para commit
+          if git diff --cached --exit-code; then
+            echo "Nenhuma alteração para commit."
+          else
+            git commit -m "Atualização automática dos identificadores de projeto"
+            git push origin "$BRANCH_NAME"
+          fi
