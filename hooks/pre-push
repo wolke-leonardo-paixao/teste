@@ -16,9 +16,9 @@ find src -type f -name "*" | while read -r file; do
     elif [ "$branch" = "prod" ]; then
         sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
     fi
+  fi
   git add "$file"
   git commit -m "alterandoautomatica id do projeto"
-  fi
 done
 
 # Se todas as verificações passaram, permita o push
