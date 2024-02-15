@@ -22,28 +22,28 @@ jobs:
           git config --global user.email "leonardo.paixao@wolkedatasolutions.com"
           git config --global user.name "wolke-leonardo-paixao"
 
-          - name: Update script SQL with branch name
-          run: |
-            for file in src/*.sql; do
-              if [ -f "$file" ]; then
-                if [[ "$BRANCH_NAME" == "dev" ]]; then
-                  sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
-                elif [[ "$BRANCH_NAME" == "prod" ]]; then
-                  sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
-                else
-                  echo "Branch não reconhecido: $BRANCH_NAME"
-                fi
-                git add "$file"
-              else 
-                echo "arquivo não encontrado"
+      - name: Update script SQL with branch name
+        run: |
+          for file in src/*.sql; do
+            if [ -f "$file" ]; then
+              if [[ "$BRANCH_NAME" == "dev" ]]; then
+                sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
+              elif [[ "$BRANCH_NAME" == "prod" ]]; then
+                sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
+              else
+                echo "Branch não reconhecido: $BRANCH_NAME"
               fi
-            done
-        
-            # Verificar se há alterações para commit
-            if git diff --cached --exit-code; then
-              echo "Nenhuma alteração para commit."
-            else
-              git commit -m "Atualização automática dos identificadores de projeto"
-              git push origin $BRANCH_NAME
+              git add "$file"
+            else 
+              echo "arquivo não encontrado"
             fi
+          done
+        
+          # Verificar se há alterações para commit
+          if git diff --cached --exit-code; then
+            echo "Nenhuma alteração para commit."
+          else
+            git commit -m "Atualização automática dos identificadores de projeto"
+            git push origin $BRANCH_NAME
+          fi
         
