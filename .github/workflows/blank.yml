@@ -1,19 +1,19 @@
 name: replace projectId
- 
+
 on:
   push:
     branches:
       - 'prod'
       - 'dev'
- 
+
 jobs:
   print-variable:
     runs-on: ubuntu-latest
- 
+
     steps:
       - name: Carregar arquivo de ambiente
         uses: actions/checkout@v2
- 
+
       - name: Get Branch Name
         run: echo "BRANCH_NAME=$(echo $GITHUB_REF | awk -F'/' '{print $3}')" >> $GITHUB_ENV
 
@@ -21,9 +21,7 @@ jobs:
         run: |
           git config --global user.email "leonardo.paixao@wolkedatasolutions.com"
           git config --global user.name "wolke-leonardo-paixao"
-          git config --global credential.helper "store --file ~/.git-credentials"
-          echo "https://github.com/${{ github.repository_owner }}:${{ secrets.GH_TOKEN }}" > ~/.git-credentials
- 
+
       - name: Update script SQL with branch name
         run: |
           for file in src/*.sql; do
@@ -41,22 +39,11 @@ jobs:
             fi
           done
 
-          git remote -v
-
           # Verificar se há alterações para commit
           if git diff --cached --exit-code; then
             echo "Nenhuma alteração para commit."
           else
             git commit -m "Atualização automática dos identificadores de projeto"
+            git pull origin $BRANCH_NAME
+            git push origin $BRANCH_NAME
           fi
-
-      - name: Print Branch Name
-        run: |
-         echo "Branch Name: $BRANCH_NAME"
-        
-
-      - name: Push changes
-        run: git push https://github.com/wolke-leonardo-paixao/ $BRANCH_NAME:$BRANCH_NAME
-        env:
-          BRANCH_NAME: $BRANCH_NAME
-        
