@@ -44,5 +44,6 @@ jobs:
               echo "Nenhuma alteração para commit."
             else
               git commit -m "Atualização automática dos identificadores de projeto"
-              git push https://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@github.com/wolke-leonardo-paixao/teste $BRANCH_NAME
+              git remote set-url origin https://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@github.com/wolke-leonardo-paixao/teste.git
+              git push origin $BRACH_NAME
             fi
