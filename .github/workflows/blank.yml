@@ -21,6 +21,6 @@ jobs:
 
       - name: Executar Script Bash
         run: |
-          bash script.sh
+          bash src/script.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
