@@ -1,14 +1,14 @@
-!/bin/bash
+#!/bin/bash
 
 exit_with_error() {
     echo "Erro: $1"
     exit 1
 }
 
- Encontrar a branch atual
+ #Encontrar a branch atual
 branch=$(git rev-parse --abbrev-ref HEAD)
 
- Encontrar diretórios e arquivos
+ #Encontrar diretórios e arquivos
 find src -type f -name "*" | while read -r file; do
   if [ -f "$file" ]; then
     if [ "$branch" = "dev" ]; then
