@@ -13,6 +13,11 @@ jobs:
     steps:
       - name: Checkout do Código
         uses: actions/checkout@v2
+      
+      - name: Configurar Git
+        run: |
+          git config --global user.email "leonardo.paixao@wolkedatasolutions.com"
+          git config --global user.name "wolke-leonardo-paixao"
 
       - name: Configurar ambiente
         run: |
