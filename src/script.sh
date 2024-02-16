@@ -14,7 +14,7 @@ if [ "$branch" != "dev" ] && [ "$branch" != "prod" ]; then
 fi
 
 # Encontrar diretórios e arquivos
-find src -type f -name "*" | while read -r file; do
+find src -type f -name "*.sql" | while read -r file; do
     if [ -f "$file" ]; then
         if [ "$branch" = "dev" ]; then
             sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
