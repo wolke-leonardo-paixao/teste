@@ -56,5 +56,6 @@ jobs:
             echo "Nenhuma alteração para commit."
           else
             git commit -m "Atualização automática dos identificadores de projeto"
+            git remote -v
             git push origin $BRANCH_NAME
           fi
