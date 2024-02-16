@@ -29,7 +29,10 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
 
       - name: Set Git Remote URL to SSH
-        run: git remote set-url origin git@github.com:wolke-leonardo-paixao/teste.git
+        run: |
+          git remote set-url origin git@github.com:wolke-leonardo-paixao/teste.git
+          ls -al ~/.ssh
+          cat ~/.ssh/id_rsa
 
       - name: Update script SQL with branch name
         run: |
