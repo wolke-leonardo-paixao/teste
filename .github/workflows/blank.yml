@@ -22,6 +22,15 @@ jobs:
           git config --global user.email "leonardo.paixao@wolkedatasolutions.com"
           git config --global user.name "wolke-leonardo-paixao"
       
+      - name: Add SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "$PRIVATE_SSH_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Set Git Remote URL to SSH
+        run: git remote set-url origin git@github.com:wolke-leonardo-paixao/teste.git
+
       - name: Update script SQL with branch name
         run: |
           for file in src/*.sql; do
@@ -44,6 +53,5 @@ jobs:
             echo "Nenhuma alteração para commit."
           else
             git commit -m "Atualização automática dos identificadores de projeto"
-            git remote set-url origin https://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@github.com/wolke-leonardo-paixao/teste.git
             git push origin $BRANCH_NAME
           fi
