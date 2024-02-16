@@ -1,27 +1,26 @@
-#!/bin/bash
+!/bin/bash
 
-#exit_with_error() {
-#    echo "Erro: $1"
-#    exit 1
-#}
+exit_with_error() {
+    echo "Erro: $1"
+    exit 1
+}
 
-# Encontrar a branch atual
-#branch=$(git rev-parse --abbrev-ref HEAD)
+ Encontrar a branch atual
+branch=$(git rev-parse --abbrev-ref HEAD)
 
-# Encontrar diretórios e arquivos
-#find src -type f -name "*" | while read -r file; do
-#  if [ -f "$file" ]; then
-#    if [ "$branch" = "dev" ]; then
-#        sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
-#        git add "$file"
-#        git commit -m "alterandoautomatica id do projeto"
-#    elif [ "$branch" = "prod" ]; then
-#        sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
-#        git add "$file"
-#        git commit -m "alterandoautomatica id do projeto"
-#    fi
-#  fi
-#done
-
+ Encontrar diretórios e arquivos
+find src -type f -name "*" | while read -r file; do
+  if [ -f "$file" ]; then
+    if [ "$branch" = "dev" ]; then
+        sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
+        git add "$file"
+        git commit -m "alterandoautomatica id do projeto"
+    elif [ "$branch" = "prod" ]; then
+        sed -i "s/dlh-dev-brlm-qr8/dlh-prd-brlm-zcb/g" "$file"
+        git add "$file"
+        git commit -m "alterandoautomatica id do projeto"
+    fi
+  fi
+done
 # Se todas as verificações passaram, permita o push
-#exit 0
+exit 0
