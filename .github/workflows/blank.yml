@@ -25,11 +25,12 @@ jobs:
 
           # Verificar se estamos em uma branch de interesse
           if [ "$branch" != "dev" ] && [ "$branch" != "prod" ]; then
-              exit_with_error "Este script só pode ser executado nas branches 'dev' ou 'prod'."
+              echo "Este script só pode ser executado nas branches 'dev' ou 'prod'."
+              exit 1
           fi
         
           # Encontrar diretórios e arquivos
-            find src -type f -name "*.sql" | while read -r file; do
+          find src -type f -name "*.sql" | while read -r file; do
               if [ -f "$file" ]; then
                   if [ "$branch" = "dev" ]; then
                       sed -i "s/dlh-prd-brlm-zcb/dlh-dev-brlm-qr8/g" "$file"
@@ -39,6 +40,13 @@ jobs:
                   git add "$file"
               fi
           done
+        
+          # Adicionar e fazer o commit das alterações
+          git commit -m "Atualizar strings SQL para a branch $branch"
+
+          # Fazer o push das alterações para o repositório remoto
+          git push origin "$branch"
+        
 
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
