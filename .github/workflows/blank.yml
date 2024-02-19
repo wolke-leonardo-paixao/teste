@@ -18,6 +18,11 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y sed
+      
+      - name:
+        run: |
+          git config user.email "leonardo.paixao@wolkedatasolutions.com"
+          git config user.name "wolke-leonardo-paixao"
 
       - name: Executar Script Bash
         run: |
@@ -42,7 +47,8 @@ jobs:
           done
         
           # Adicionar e fazer o commit das alterações
-          git commit -m "Atualizar strings SQL para a branch $branch"        
+          git commit -m "Atualizar strings SQL para a branch $branch"    
+          git push origin "$branch"    
 
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
