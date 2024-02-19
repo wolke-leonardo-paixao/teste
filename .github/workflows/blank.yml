@@ -42,11 +42,7 @@ jobs:
           done
         
           # Adicionar e fazer o commit das alterações
-          git commit -m "Atualizar strings SQL para a branch $branch"
-
-          # Fazer o push das alterações para o repositório remoto
-          git push origin "$branch"
-        
+          git commit -m "Atualizar strings SQL para a branch $branch"        
 
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
