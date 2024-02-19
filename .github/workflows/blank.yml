@@ -14,10 +14,6 @@ jobs:
       - name: Checkout do Código
         uses: actions/checkout@v2
       
-      - name: Configurar Git
-        run: |
-          git config --global user.email "leonardo.paixao@wolkedatasolutions.com"
-          git config --global user.name "wolke-leonardo-paixao"
       - name: Configurar ambiente
         run: |
           sudo apt-get update
@@ -26,5 +22,10 @@ jobs:
       - name: Executar Script Bash
         run: |
           bash src/script.sh
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+

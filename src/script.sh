@@ -25,11 +25,4 @@ find src -type f -name "*.sql" | while read -r file; do
     fi
 done
 
-# Fazer commit das alterações
-git commit -m "Alteração automática de string na branch $branch"
-
-# Enviar alterações para o repositório remoto
-git push origin "$branch"
-
-# Finalizar
 exit 0
