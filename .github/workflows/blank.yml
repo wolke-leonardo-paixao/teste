@@ -19,7 +19,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y sed
       
-      - name:
+      - name: set config git
         run: |
           git config user.email "leonardo.paixao@wolkedatasolutions.com"
           git config user.name "wolke-leonardo-paixao"
